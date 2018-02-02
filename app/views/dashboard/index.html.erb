@@ -1,3 +1,5 @@
 <%= Rails.version %>
 
 <button class="btn btn-primary">Hello <%= current_user.email %></button>
+<hr>
+<%= link_to "logout", destroy_user_session_path, method: :delete %>
