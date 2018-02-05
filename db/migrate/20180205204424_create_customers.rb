@@ -6,7 +6,7 @@ class CreateCustomers < ActiveRecord::Migration[5.0]
       t.string :email , null: false
       t.string :username , null: false
 
-      t.timestamps , null: false
+      t.timestamps null: false
     end
     add_index :customers, :email, unique: true
     add_index :customers, :username, unique: true
