@@ -1,12 +1,12 @@
 class CreateCustomers < ActiveRecord::Migration[5.0]
   def change
     create_table :customers do |t|
-      t.string :first_name
-      t.string :last_name 
-      t.string :email
-      t.string :username
-      
-      t.timestamps
+      t.string :first_name , null: false
+      t.string :last_name , null: false
+      t.string :email , null: false
+      t.string :username , null: false
+
+      t.timestamps , null: false
     end
   end
 end
