@@ -13,4 +13,14 @@ class CustomerSearchTerm
 		end
 	end
 
+private
+	
+	def build_for_email_search(search_term)
+
+	end
+
+	def build_for_name_search(search_term)
+
+	end
+
 end
