@@ -24,4 +24,12 @@ private
 		@where_args[:first_name] = starts_with(search_term)
 	end
 
+	def starts_with(search_term)
+		
+	end
+
+	def case_insensitive_search(field_name)
+		
+	end
+
 end
