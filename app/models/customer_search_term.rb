@@ -6,7 +6,7 @@ class CustomerSearchTerm
 		search_term = search_term.downcase
 		@where_clause = ''
 		@where_args = {}
-		if @where_args =~ /@/
+		if search_term =~ /@/
 			build_for_email_search(search_term)
 		else
 			build_for_name_search(search_term)
@@ -47,7 +47,7 @@ private
 	end
 
 	def case_insensitive_search(field_name)
-		"lower(#{field_name}) like: #{field_name}"
+		"lower(#{field_name}) like:#{field_name}"
 	end
 
 end
