@@ -19,10 +19,6 @@ private
 
 	end
 
-	def extract_name(email)
-		email.gsub(/@.*$/,"").gsub(/[0-9]+/,"") #fsdaf456
-	end
-
 	def build_for_name_search(search_term)
 		@where_clause << case_insensitive_search(:first_name)
 		@where_args[:first_name] = starts_with(search_term)
@@ -30,6 +26,10 @@ private
 		@where_args[:last_name] = starts_with(search_term)
 
 		@order = "last_name asc"
+	end
+
+	def extract_name(email)
+		email.gsub(/@.*$/,"").gsub(/[0-9]+/,"") #fsdaf456
 	end
 
 	def starts_with(search_term)
