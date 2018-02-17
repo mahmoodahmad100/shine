@@ -2,6 +2,10 @@
 	<h2>Customer Search</h2>
 </header>
 
+<% if @customers.present? %>
+	<%= render partial: "pager", locals: {keywords: @keywords, page: @page} %>
+<% end %>
+
 <section>
 	<%= form_for :customers, method: :get do |f| %>
 		<div class="input-group input-group-lg">
@@ -31,4 +35,8 @@
 		</li>
 		<% end %>
 	</ol>
+
+	<% if @customers.present? %>
+		<%= render partial: "pager", locals: {keywords: @keywords, page: @page} %>
+	<% end %>
 </section>
