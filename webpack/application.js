@@ -14,3 +14,41 @@ var ng = {
 	platformBrowserDynamic: require("@angular/platform-browser-dynamic"),
 	router: require("@angular/router")
 };
+
+var NgTestComponent = ng.core.Component({
+	selector: "ng-test", 
+	template:'\
+		<h2 *ngIf="name">Hello {{name}}!</h2> \
+		<form> \
+		<div class="form-group"> \
+		<label for="name">Name</label> \
+		<input type="text" id="name" class="form-control" \
+		name="name" bindon-ngModel="name"> \
+		</div> \
+		</form> \
+		'
+})
+.Class({
+	constructor: function(){
+		this.name = null;
+	}
+});
+
+var NgTestAppModule = ng.core.NgModule({
+	imports: [ ng.platformBrowser.BrowserModule, ng.forms.FormsModule ],
+	declarations: [ NgTestComponent ],
+	bootstrap: [ NgTestComponent ]
+})
+.Class({
+	constructor: function() {}
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+	var shouldBootstrap = document.getElementById("ng-test");
+	if (shouldBootstrap) {
+		ng.platformBrowserDynamic.
+		platformBrowserDynamic().
+		bootstrapModule(NgTestAppModule);
+	}
+});
