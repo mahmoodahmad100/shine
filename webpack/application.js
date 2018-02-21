@@ -33,16 +33,16 @@ var CustomerSearchComponent = ng.core.Component({
 		<section> \
 			<h1>Results</h1> \
 			<ol class="list-group"> \
-				<li class="list-group-item clearfix"> \
+				<li *ngFor="let customer of customers" class="list-group-item clearfix"> \
 					<h3 class="pull-right"> \
 						<small class="text-uppercase">Joined</small> \
-						2018-05-01 \
+						{{customer.created_at}} \
 					</h3> \
 					<h3> \
-						Hello World \
-						<small>test500</small> \
+						{{customer.first_name}} {{customer.last_name}} \
+						<small>{{customer.username}}</small> \
 					</h3> \
-					<h4>test@test.com</h4> \
+					<h4>{{customer.email}}</h4> \
 				</li> \
 			</ol> \
 		</section> \
@@ -50,11 +50,36 @@ var CustomerSearchComponent = ng.core.Component({
 })
 .Class({
 	constructor: function(){
-		this.keywords = null;
+		this.keywords  = null;
+		this.customers = null; 
+
+		this.Results = [
+			{
+				first_name: "first 1",
+				last_name: "last 1",
+				username: "test1",
+				email: "test1@test.com",
+				created_at: "2020-02-02"
+			},
+			{
+				first_name: "first 2",
+				last_name: "last 2",
+				username: "test2",
+				email: "test2@test.com",
+				created_at: "2020-02-02"
+			},
+			{
+				first_name: "first 3",
+				last_name: "last 3",
+				username: "test3",
+				email: "test3@test.com",
+				created_at: "2020-02-02"
+			}
+		]
 	},
 	search: function()
 	{
-		alert("the keywords: " + this.keywords);
+		this.customers = (this.keywords != null) ? this.Results : [];
 	}
 });
 
