@@ -25,15 +25,13 @@ var CustomerSearchComponent = ng.core.Component({
 			<form> \
 				<div class="input-group input-group-lg"> \
 					<label for="keywords" class="sr-only">Keywords></label> \
-					<input type="text" id="keywords" name="keywords" placeholder="first , last name or email" class="form-control"> \
-					<span class="input-group-btn"><input type="submit" value="find customers" class="btn btn-primary"></span> \
+					<input bindon-ngModel="keywords" type="text" id="keywords" name="keywords" placeholder="first , last name or email" class="form-control"> \
+					<span class="input-group-btn"><input on-click="search()" type="submit" value="find customers" class="btn btn-primary"></span> \
 				</div> \
 			</form> \
 		</section> \
 		<section> \
-			<header> \ 
-				<h1>Results</h1> \
-			</header> \
+			<h1>Results</h1> \
 			<ol class="list-group"> \
 				<li class="list-group-item clearfix"> \
 					<h3 class="pull-right"> \
@@ -51,7 +49,13 @@ var CustomerSearchComponent = ng.core.Component({
 		'
 })
 .Class({
-	constructor: function(){}
+	constructor: function(){
+		this.keywords = null;
+	},
+	search: function()
+	{
+		alert("the keywords: " + this.keywords);
+	}
 });
 
 var CustomerSearchAppModule = ng.core.NgModule({
