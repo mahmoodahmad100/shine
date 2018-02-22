@@ -79,7 +79,7 @@ var CustomerSearchComponent = ng.core.Component({
 	},
 	search: function()
 	{
-		this.customers = (this.keywords != null) ? this.Results : [];
+		var self = this;
 	}
 });
 
