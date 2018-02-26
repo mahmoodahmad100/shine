@@ -87,7 +87,7 @@ var CustomerSearchComponent = ng.core.Component({
 		var self = this;
 		self.http.get("/customers.json?keywords=" + self.keywords).subscribe(
 			function(res){
-				self.customers = self.res.json().customers;
+				self.customers = res.json().customers;
 			},
 			function(error){
 				alert(error);
