@@ -12,7 +12,8 @@ var ng = {
 	forms: require("@angular/forms"),
 	platformBrowser: require("@angular/platform-browser"),
 	platformBrowserDynamic: require("@angular/platform-browser-dynamic"),
-	router: require("@angular/router")
+	router: require("@angular/router"),
+	http: require("@angular/http")
 };
 
 var CustomerSearchComponent = ng.core.Component({
@@ -49,42 +50,58 @@ var CustomerSearchComponent = ng.core.Component({
 		'
 })
 .Class({
-	constructor: function(){
-		this.keywords  = null;
-		this.customers = null; 
+	constructor: [
+		ng.http.Http,
+		function(http){
+			this.http = http;
+			this.keywords  = null;
+			this.customers = null; 
 
-		this.Results = [
-			{
-				first_name: "first 1",
-				last_name: "last 1",
-				username: "test1",
-				email: "test1@test.com",
-				created_at: "2020-02-02"
-			},
-			{
-				first_name: "first 2",
-				last_name: "last 2",
-				username: "test2",
-				email: "test2@test.com",
-				created_at: "2020-02-02"
-			},
-			{
-				first_name: "first 3",
-				last_name: "last 3",
-				username: "test3",
-				email: "test3@test.com",
-				created_at: "2020-02-02"
-			}
-		]
-	},
+			this.Results = [
+				{
+					first_name: "first 1",
+					last_name: "last 1",
+					username: "test1",
+					email: "test1@test.com",
+					created_at: "2020-02-02"
+				},
+				{
+					first_name: "first 2",
+					last_name: "last 2",
+					username: "test2",
+					email: "test2@test.com",
+					created_at: "2020-02-02"
+				},
+				{
+					first_name: "first 3",
+					last_name: "last 3",
+					username: "test3",
+					email: "test3@test.com",
+					created_at: "2020-02-02"
+				}
+			]
+		}
+	],
 	search: function()
 	{
 		var self = this;
+		self.http.get("/customers.json?keywords=" + self.keywords).subscribe(
+			function(res){
+				self.customers = self.res.json().customers;
+			},
+			function(error){
+				alert(error);
+			}
+		);
 	}
 });
 
 var CustomerSearchAppModule = ng.core.NgModule({
-	imports: [ ng.platformBrowser.BrowserModule, ng.forms.FormsModule ],
+	imports: [ 
+		ng.platformBrowser.BrowserModule, 
+		ng.forms.FormsModule, 
+		ng.http.HttpModule 
+	],
 	declarations: [ CustomerSearchComponent ],
 	bootstrap: [ CustomerSearchComponent ]
 })
