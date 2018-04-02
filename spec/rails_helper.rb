@@ -60,6 +60,8 @@ RSpec.configure do |config|
 
 
   config.before(:suite) do
+    $pid = spawn("./node_modules/.bin/webpack-dev-server " +
+                 "--config config/webpack.config.js --quiet")
     DatabaseCleaner.clean_with(:truncation)
   end
 
@@ -77,6 +79,18 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.after(:suite) do
+    puts "Killing webpack-dev-server"
+    Process.kill("HUP",$pid)
+    begin
+      Timeout.timeout(2) do
+        Process.wait($pid,0)
+      end
+    rescue => Timeout::Error
+      Process.kill(9,$pid)
+    end
   end
 
 
