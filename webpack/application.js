@@ -30,7 +30,7 @@ var CustomerSearchComponent = ng.core.Component({
 				</div> \
 			</form> \
 		</section> \
-		<section class="search-results"> \
+		<section class="search-results" *ngIf="customers"> \
 			<h1>Results</h1> \
 			<ol class="list-group"> \
 				<li *ngFor="let customer of customers" class="list-group-item clearfix"> \
