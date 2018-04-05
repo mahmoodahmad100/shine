@@ -1,0 +1,4 @@
+describe("CustomerSearchComponent", function() {
+
+
+});
