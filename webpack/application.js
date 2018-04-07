@@ -16,8 +16,6 @@ var ng = {
 	http: require("@angular/http")
 };
 
-
-
 var CustomerSearchAppModule = ng.core.NgModule({
 	imports: [ 
 		ng.platformBrowser.BrowserModule, 
