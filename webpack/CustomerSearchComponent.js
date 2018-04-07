@@ -81,3 +81,5 @@ var CustomerSearchComponent = ng.core.Component({
 		);
 	}
 });
+
+module.exports = CustomerSearchComponent;
