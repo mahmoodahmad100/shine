@@ -1,3 +1,5 @@
+var CustomerSearchComponent = require("../../webpack/CustomerSearchComponent");
+
 describe("CustomerSearchComponent", function() {
 	describe("initial state", function() {
 		it("sets customers to null");
