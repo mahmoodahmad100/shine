@@ -9,7 +9,7 @@ describe("CustomerSearchComponent", function() {
 		it("sets customers to null",function(){
 			expect(component.customers).toBe(null);
 		});
-		it("sets keywords to the empty string",function(){
+		it("sets keywords to null",function(){
 			expect(component.keywords).toBe(null);
 		});
 	});
