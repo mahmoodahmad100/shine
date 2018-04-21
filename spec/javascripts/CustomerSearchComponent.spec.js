@@ -1,4 +1,5 @@
 var CustomerSearchComponent = require("../../webpack/CustomerSearchComponent");
+var td = require("testdouble")
 var component = null;
 
 describe("CustomerSearchComponent", function() {
@@ -15,8 +16,19 @@ describe("CustomerSearchComponent", function() {
 	});
 	describe("search", function() {
 		describe("A search for 'pa' ... less than 3 characters", function() {
-			it("sets the keywords to be 'pa'");
-			it("does not make an HTTP call");
+			var mockHttp = null;
+			beforeEach(function() {
+				mockHttp = td.object(["get"]);
+				component = new CustomerSearchComponent(mockHttp);
+			});
+			it("sets the keywords to be 'pa'", function(){
+				component.search("pa");
+				expect(component.keywords).toBe("pa");
+			});
+			it("does not make an HTTP call", function(){
+				component.search("pa");
+				td.verify(mockHttp.get(), { times: 0 });
+			});
 		});
 		describe("A search for 'pat', ... 3 or +3 characters", function() {
 			describe("A successful search", function() {
