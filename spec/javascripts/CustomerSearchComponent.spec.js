@@ -1,5 +1,5 @@
 var CustomerSearchComponent = require("../../webpack/CustomerSearchComponent");
-var td = require("testdouble")
+var td = require("testdouble");
 var component = null;
 
 describe("CustomerSearchComponent", function() {
@@ -31,6 +31,33 @@ describe("CustomerSearchComponent", function() {
 			});
 		});
 		describe("A search for 'pat', ... 3 or +3 characters", function() {
+			var mockHttp = null;
+			var customers = [
+				{
+				id: 1,
+				created_at: (new Date()).toString(),
+				first_name: "Pat",
+				last_name: "Jones",
+				username: "pj",
+				email: "pjones@somewhere.net"
+				},
+				{
+				id: 2,
+				created_at: (new Date()).toString(),
+				first_name: "Pat",
+				last_name: "Jones",
+				username: "pj",
+				email: "pjones@somewhere.net"
+				},
+			];
+
+			beforeEach(function() {
+				var response = td.object(["json"]);
+				td.when(response.json()).thenReturn({ customers: customers });
+				mockHttp = td.object(["get"]);
+				component = new CustomerSearchComponent(mockHttp);
+			});
+			
 			describe("A successful search", function() {
 				it("sets the keywords to be 'pat'");
 				it("sets the customers to the results of the HTTP call");
