@@ -3,3 +3,6 @@
 * angular (+2 ... without typescript)
 * bootstrap
 * postgre
+
+
+# sooon
