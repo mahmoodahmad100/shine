@@ -77,6 +77,18 @@ describe("CustomerSearchComponent", function() {
 				});
 			});
 			describe("A search that fails", function() {
+				beforeEach(function() {
+					var response = "There was an error (-_-)";
+					var observable = td.object(["subscribe"]);
+
+					td.when(observable.subscribe(
+					td.matchers.isA(Function),
+					td.callback(response))).thenReturn();
+
+					mockHttp = td.object(["get"]);
+					td.when(mockHttp.get("/customers.json?keywords=pat")).thenReturn(observable);
+					component = new CustomerSearchComponent(mockHttp);
+				});
 				it("sets the keywords to be 'pat'");
 				it("leaves customers as null");
 				it("alerts the user with the response message");
