@@ -1,6 +1,7 @@
 var CustomerSearchComponent = require("../../webpack/CustomerSearchComponent");
 var td = require("testdouble");
 var component = null;
+window = td.object(["alert"]);
 
 describe("CustomerSearchComponent", function() {
 	beforeEach(function() {
@@ -87,11 +88,22 @@ describe("CustomerSearchComponent", function() {
 
 					mockHttp = td.object(["get"]);
 					td.when(mockHttp.get("/customers.json?keywords=pat")).thenReturn(observable);
+					td.when(window.alert()).thenReturn();
+					
 					component = new CustomerSearchComponent(mockHttp);
 				});
-				it("sets the keywords to be 'pat'");
-				it("leaves customers as null");
-				it("alerts the user with the response message");
+				it("sets the keywords to be 'pat'", function(){
+					component.search("pat");
+					expect(component.keywords).toBe("pat");
+				});
+				it("leaves customers as null", function(){
+					component.search("pat");
+					expect(component.customers).toBe(null);
+				});
+				it("alerts the user with the response message", function(){
+					component.search("pat");
+					td.verify(window.alert("There was an error (-_-)"));
+				});
 			});
 		});
 	});
