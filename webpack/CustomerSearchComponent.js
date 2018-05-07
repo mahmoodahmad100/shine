@@ -7,35 +7,7 @@ http: require("@angular/http")
 
 var CustomerSearchComponent = ng.core.Component({
 	selector: "customer-search", 
-	template:' \
-		<header> \
-			<h2>Customer Search</h2> \
-		</header> \
-		<section class="search-form"> \
-			<form> \
-				<div class="input-group input-group-lg"> \
-					<label for="keywords" class="sr-only">Keywords></label> \
-					<input bindon-ngModel="keywords" on-ngModelChange="search($event)" type="text" id="keywords" name="keywords" placeholder="first , last name or email" class="form-control"> \
-				</div> \
-			</form> \
-		</section> \
-		<section class="search-results" *ngIf="customers"> \
-			<h1>Results</h1> \
-			<ol class="list-group"> \
-				<li *ngFor="let customer of customers" class="list-group-item clearfix"> \
-					<h3 class="pull-right"> \
-						<small class="text-uppercase">Joined</small> \
-						{{customer.created_at}} \
-					</h3> \
-					<h3> \
-						{{customer.first_name}} {{customer.last_name}} \
-						<small>{{customer.username}}</small> \
-					</h3> \
-					<h4>{{customer.email}}</h4> \
-				</li> \
-			</ol> \
-		</section> \
-		'
+	template: require("./CustomerSearchComponent.html")
 })
 .Class({
 	constructor: [
