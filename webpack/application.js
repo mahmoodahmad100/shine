@@ -16,7 +16,8 @@ var ng = {
 	http: require("@angular/http")
 };
 
-var CustomerSearchComponent = require("./CustomerSearchComponent");
+var CustomerSearchComponent  = require("./CustomerSearchComponent");
+var CustomerDetailsComponent = require("./CustomerDetailsComponent");
 
 var CustomerSearchAppModule = ng.core.NgModule({
 	imports: [ 
@@ -24,7 +25,10 @@ var CustomerSearchAppModule = ng.core.NgModule({
 		ng.forms.FormsModule, 
 		ng.http.HttpModule 
 	],
-	declarations: [ CustomerSearchComponent ],
+	declarations: [ 
+		CustomerSearchComponent,
+		CustomerDetailsComponent
+	],
 	bootstrap: [ CustomerSearchComponent ]
 })
 .Class({

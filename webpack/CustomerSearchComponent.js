@@ -1,8 +1,8 @@
 var reflectMetadata = require("reflect-metadata");
 
 var ng = {
-core: require("@angular/core"),
-http: require("@angular/http")
+	core: require("@angular/core"),
+	http: require("@angular/http")
 };
 
 var CustomerSearchComponent = ng.core.Component({
