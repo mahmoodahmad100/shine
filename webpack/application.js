@@ -19,6 +19,19 @@ var ng = {
 var CustomerSearchComponent  = require("./CustomerSearchComponent");
 var CustomerDetailsComponent = require("./CustomerDetailsComponent");
 
+var routing = ng.router.RouterModule.forRoot(
+	[
+		{
+			path: "",
+			component: CustomerSearchComponent
+		},
+		{
+			path: ":id",
+			component: CustomerDetailsComponent
+		}
+	]
+);
+
 var CustomerSearchAppModule = ng.core.NgModule({
 	imports: [ 
 		ng.platformBrowser.BrowserModule, 
