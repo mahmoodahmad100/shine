@@ -16,6 +16,7 @@ var ng = {
 	http: require("@angular/http")
 };
 
+var CustomerAppComponent = require("./CustomerAppComponent");
 var CustomerSearchComponent  = require("./CustomerSearchComponent");
 var CustomerDetailsComponent = require("./CustomerDetailsComponent");
 
@@ -40,10 +41,11 @@ var CustomerSearchAppModule = ng.core.NgModule({
 		routing 
 	],
 	declarations: [ 
+		CustomerAppComponent,
 		CustomerSearchComponent,
 		CustomerDetailsComponent
 	],
-	bootstrap: [ CustomerSearchComponent ]
+	bootstrap: [ CustomerAppComponent ]
 })
 .Class({
 	constructor: function() {}

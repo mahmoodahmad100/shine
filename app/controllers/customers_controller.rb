@@ -2,6 +2,10 @@ class CustomersController < ApplicationController
 
 	PAGE_SIZE = 10
 
+	def ng
+		@base_url = '/customers/ng'		
+	end
+
 	def index
 		@page = (params[:page] || 0).to_i
 		if params[:keywords].present?
@@ -17,7 +21,9 @@ class CustomersController < ApplicationController
 		end
 
 		respond_to do |format|
-			format.html {}
+			format.html {
+				redirect_to "/customers/ng"
+			}
 			format.json{
 				render json: {customers: @customers}
 			} 
