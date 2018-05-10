@@ -1,6 +1,6 @@
 # shine (ROR + NG)
 * ruby on rails
-* angular (+2 ... without typescript)
+* angularjs 2
 * bootstrap
 * postgre
 
