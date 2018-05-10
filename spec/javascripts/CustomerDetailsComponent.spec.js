@@ -20,6 +20,22 @@ describe("CustomerDetailsComponent", function() {
 		});
 	});
 	describe("ngOnInit", function() {
-	
+		var customer = {
+			id: 1,
+			created_at: (new Date()).toString(),
+			first_name: "Pat",
+			last_name: "Jones",
+			username: "pj",
+			email: "pjones@somewhere.net"
+		}
+		beforeEach(function() {
+			var route = createMockRoute(customer.id);
+			var http = createMockHttp(customer);
+			component = new CustomerDetailsComponent(route,http);
+		});
+		it("fetches the customer from the back-end", function() {
+			component.ngOnInit();
+			expect(component.customer).toBe(customer);
+		});	
 	});
 });
