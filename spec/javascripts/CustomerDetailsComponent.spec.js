@@ -30,6 +30,19 @@ describe("CustomerDetailsComponent", function() {
 			email: "pjones@somewhere.net"
 		}
 
+	    var createMockRoute = function(id) {
+	      var observable  = td.object(["subscribe"]);
+	      var routeParams = { "id" : id };
+	      var mockActivatedRoute = { "params": observable };
+
+	      td.when(observable.subscribe(
+	        td.callback(routeParams),
+	        td.matchers.isA(Function)
+	      )).thenReturn();
+
+	      return mockActivatedRoute;
+	    }
+	    
 	    var createMockHttp = function(customer) {
 	      var response = td.object(["json"]);
 	      td.when(response.json()).thenReturn({ customer: customer });
