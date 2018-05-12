@@ -2,6 +2,7 @@ var reflectMetadata = require("reflect-metadata");
 
 var ng = {
 	core: require("@angular/core"),
+	http: require("@angular/http"),
 	router: require("@angular/router")
 };
 
@@ -12,8 +13,11 @@ var CustomerDetailsComponent = ng.core.Component({
 .Class({
 	constructor:[
 		ng.router.ActivatedRoute,
-		function(activatedRoute){
+		ng.http.Http,
+		function(activatedRoute, http){
 			this.activatedRoute = activatedRoute;
+			this.http = http;
+			this.customer = null;
 			this.id = null;
 		}
 	],
