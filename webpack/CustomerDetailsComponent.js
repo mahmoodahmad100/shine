@@ -23,16 +23,25 @@ var CustomerDetailsComponent = ng.core.Component({
 	],
 	ngOnInit: function() {
 		var self = this;
+
 		var observableFailed = function(response) {
 			window.alert(response);
 		}
 		
-		self.activatedRoute.params.subscribe(
-			function(params){
-				var id = +params['id'];
-				self.id = id;
-			}
-		);
+	    var customerGetSuccess = function(response) {
+	      self.customer = response.json().customer;
+	    }
+
+	    var routeSuccess = function(params) {
+	      self.http.get(
+	        "/customers/" + params['id'] + ".json"
+	      ).subscribe(
+	        customerGetSuccess,
+	        observableFailed
+	      );
+	    }
+
+		self.activatedRoute.params.subscribe(routeSuccess, observableFailed);
 	}
 });
 
