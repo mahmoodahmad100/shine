@@ -6,6 +6,13 @@ class CustomersController < ApplicationController
 		@base_url = '/customers/ng'		
 	end
 
+  def show
+    customer = Customer.find(params[:id])
+    respond_to do |format|
+      format.json { render json: { customer: customer } }
+    end
+  end
+
 	def index
 		@page = (params[:page] || 0).to_i
 		if params[:keywords].present?
