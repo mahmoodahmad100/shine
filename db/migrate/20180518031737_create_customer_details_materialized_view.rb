@@ -49,11 +49,17 @@ class CreateCustomerDetailsMaterializedView < ActiveRecord::Migration[5.0]
 			JOIN states shipping_state ON
 				shipping_address.state_id = shipping_state.id
 		}
+		execute %{
+			CREATE UNIQUE INDEX
+				customer_details_customer_id
+			ON
+				customer_details(customer_id)			
+		}
 	end
 
 	def down
 		execute %{
-			
+			DROP MATERIALIZED VIEW customer_details
 		}
 	end
 
