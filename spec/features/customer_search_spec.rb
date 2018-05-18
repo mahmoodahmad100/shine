@@ -1,6 +1,19 @@
 require "rails_helper"
 
 feature "Customer Search" do
+
+  def create_address
+    state = State.find_or_create_by!(
+      code: Faker::Address.state_abbr,
+      name: Faker::Address.state)
+
+    Address.create!(
+       street: Faker::Address.street_address,
+         city: Faker::Address.city,
+        state: state,
+      zipcode: Faker::Address.zip)
+  end
+
   def create_customer(first_name:,
                       last_name:,
                       email: nil)
@@ -15,6 +28,10 @@ feature "Customer Search" do
         username: username,
            email: email
     )
+
+    customer.create_customers_billing_address(address: create_address)
+    customer.customers_shipping_address.create!(address: create_address, primary: true)
+    customer
   end
 
   let(:email)    { "pat@example.com" }
